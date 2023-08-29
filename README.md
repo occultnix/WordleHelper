@@ -6,11 +6,9 @@ Pre-Alpha
 
 #Current Features
 - An intuitive UI appearance
-- A list of five-letter words
+- A paginated list of all available words
 
 #TO DO
-- Add "Show More Words" button to show more than 100
-- Figure out a way to show all available words without crashing the program? Pagination?
 - Add ability to mark keyboard letters as valid (single-click) or invalid (double-click)
 - Get valid letters and update wordlist
 - Get invalid letters and update wordlist

@@ -1,18 +1,20 @@
 extends HFlowContainer
 
+onready var pageslabel = $"../../Pagination/PagesOrganizer/Pages"
+
 var steps = 0
 var counter = 0
+var numpages
+var wordlist
 
 
 func update_words(words):
-	if words.size() < 100:
-		for word in words:
+	wordlist = words
+	if wordlist.size() < 100:
+		for word in wordlist:
 			create_wordbox(word)
 	else:
-		steps = get_steps(words.size(), 100)
-		# TODO: Add a "get more words" button that loads another 100
-		for word in words.slice(0,100):
-			create_wordbox(word)
+		pagination(wordlist)
 
 
 func create_wordbox(word):
@@ -22,8 +24,23 @@ func create_wordbox(word):
 	$".".add_child(wordbox)
 
 
-func get_steps(size, step):
-	if size % step == 0:
-		return size / step
-	else:
-		return (size / step) + 1
+func pagination(wordlist):
+	steps = wordlist.size() / 100
+	numpages = steps
+	updatepagelabel()
+	fillpage()
+
+
+func emptypage():
+	var children = $".".get_children()
+	for child in children:
+		child.queue_free()
+
+
+func fillpage():
+	for word in wordlist.slice((counter * 100),((counter + 1) * 100)):
+		create_wordbox(word)
+
+
+func updatepagelabel():
+	pageslabel.text = "Page " + str(counter) + " / " + str(numpages)

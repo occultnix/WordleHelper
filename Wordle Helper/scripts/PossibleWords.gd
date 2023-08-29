@@ -19,5 +19,4 @@ func _process(_delta):
 # Updates our list of potential solutions
 func update_possible_words():
 	# TODO: Update possible words
-	var shortlist = possible_words.slice(0, 99)
-	$WordList.update_words(shortlist)
+	$WordList.update_words(possible_words.slice(0,500))
