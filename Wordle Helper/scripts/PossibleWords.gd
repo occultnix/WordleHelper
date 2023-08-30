@@ -6,7 +6,7 @@ var possible_words = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	possible_words = $"../../..".wordlist
+	possible_words = Wordlist.wordlist
 	update_possible_words()
 
 

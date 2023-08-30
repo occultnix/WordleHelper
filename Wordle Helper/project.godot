@@ -14,6 +14,10 @@ config/name="Wordle Helper"
 run/main_scene="res://scenes/MAIN.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Wordlist="*res://scripts/wordlist.gd"
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
