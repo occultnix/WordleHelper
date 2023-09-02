@@ -1,11 +1,23 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/letterbox.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scripts/PossibleWords.gd" type="Script" id=2]
+[ext_resource path="res://scripts/knowninfo.gd" type="Script" id=2]
 [ext_resource path="res://scripts/MAIN.gd" type="Script" id=3]
 [ext_resource path="res://scripts/wordlist_manager.gd" type="Script" id=4]
 [ext_resource path="res://scripts/pagination.gd" type="Script" id=5]
 [ext_resource path="res://scenes/positionbox.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/montreal/Montreal.tres" type="DynamicFont" id=7]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://assets/montreal/Montreal-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+use_filter = true
+extra_spacing_top = 2
+extra_spacing_bottom = 2
+extra_spacing_char = 2
+font_data = SubResource( 1 )
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -26,37 +38,39 @@ margin_bottom = 600.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
+script = ExtResource( 2 )
 
 [node name="LeftLabelMargins" type="MarginContainer" parent="MAIN UI/Left"]
 margin_right = 510.0
-margin_bottom = 50.0
+margin_bottom = 95.0
 size_flags_horizontal = 3
 custom_constants/margin_top = 24
-custom_constants/margin_bottom = 12
+custom_constants/margin_bottom = 36
 
 [node name="LeftLabel" type="Label" parent="MAIN UI/Left/LeftLabelMargins"]
 margin_top = 24.0
 margin_right = 510.0
-margin_bottom = 38.0
+margin_bottom = 59.0
+custom_fonts/font = SubResource( 2 )
 text = "KNOWN LETTERS"
 align = 1
 
 [node name="LetterPositions" type="MarginContainer" parent="MAIN UI/Left"]
-margin_top = 54.0
+margin_top = 99.0
 margin_right = 510.0
-margin_bottom = 325.0
+margin_bottom = 347.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_constants/margin_right = 60
-custom_constants/margin_top = 96
-custom_constants/margin_left = 60
-custom_constants/margin_bottom = 96
+custom_constants/margin_right = 48
+custom_constants/margin_top = 84
+custom_constants/margin_left = 48
+custom_constants/margin_bottom = 84
 
 [node name="Letters" type="HBoxContainer" parent="MAIN UI/Left/LetterPositions"]
-margin_left = 60.0
-margin_top = 96.0
-margin_right = 450.0
-margin_bottom = 175.0
+margin_left = 48.0
+margin_top = 84.0
+margin_right = 462.0
+margin_bottom = 164.0
 rect_min_size = Vector2( 79, 79 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -64,37 +78,37 @@ custom_constants/separation = 6
 alignment = 1
 
 [node name="Panel" parent="MAIN UI/Left/LetterPositions/Letters" instance=ExtResource( 6 )]
-margin_left = 3.0
-margin_right = 75.0
-margin_bottom = 79.0
+margin_left = 15.0
+margin_right = 87.0
+margin_bottom = 80.0
 rect_min_size = Vector2( 72, 72 )
 
 [node name="Panel2" parent="MAIN UI/Left/LetterPositions/Letters" instance=ExtResource( 6 )]
-margin_left = 81.0
-margin_right = 153.0
-margin_bottom = 79.0
+margin_left = 93.0
+margin_right = 165.0
+margin_bottom = 80.0
 rect_min_size = Vector2( 72, 72 )
 
 [node name="Panel3" parent="MAIN UI/Left/LetterPositions/Letters" instance=ExtResource( 6 )]
-margin_left = 159.0
-margin_right = 231.0
-margin_bottom = 79.0
+margin_left = 171.0
+margin_right = 243.0
+margin_bottom = 80.0
 rect_min_size = Vector2( 72, 72 )
 
 [node name="Panel4" parent="MAIN UI/Left/LetterPositions/Letters" instance=ExtResource( 6 )]
-margin_left = 237.0
-margin_right = 309.0
-margin_bottom = 79.0
+margin_left = 249.0
+margin_right = 321.0
+margin_bottom = 80.0
 rect_min_size = Vector2( 72, 72 )
 
 [node name="Panel5" parent="MAIN UI/Left/LetterPositions/Letters" instance=ExtResource( 6 )]
-margin_left = 315.0
-margin_right = 387.0
-margin_bottom = 79.0
+margin_left = 327.0
+margin_right = 399.0
+margin_bottom = 80.0
 rect_min_size = Vector2( 72, 72 )
 
 [node name="KeyboardMargins" type="MarginContainer" parent="MAIN UI/Left"]
-margin_top = 329.0
+margin_top = 351.0
 margin_right = 510.0
 margin_bottom = 600.0
 size_flags_horizontal = 3
@@ -108,13 +122,13 @@ custom_constants/margin_bottom = 36
 margin_left = 36.0
 margin_top = 36.0
 margin_right = 474.0
-margin_bottom = 235.0
+margin_bottom = 213.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="TopRow" type="HBoxContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard"]
 margin_right = 438.0
-margin_bottom = 63.0
+margin_bottom = 56.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
@@ -122,12 +136,12 @@ alignment = 1
 [node name="Q_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/TopRow"]
 margin_left = 1.0
 margin_right = 41.0
-margin_bottom = 63.0
+margin_bottom = 56.0
 
 [node name="Q" parent="MAIN UI/Left/KeyboardMargins/Keyboard/TopRow/Q_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 11.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 51.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "Q"
@@ -135,12 +149,12 @@ letter = "Q"
 [node name="W_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/TopRow"]
 margin_left = 45.0
 margin_right = 85.0
-margin_bottom = 63.0
+margin_bottom = 56.0
 
 [node name="W" parent="MAIN UI/Left/KeyboardMargins/Keyboard/TopRow/W_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 11.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 51.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "W"
@@ -148,12 +162,12 @@ letter = "W"
 [node name="E_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/TopRow"]
 margin_left = 89.0
 margin_right = 129.0
-margin_bottom = 63.0
+margin_bottom = 56.0
 
 [node name="E" parent="MAIN UI/Left/KeyboardMargins/Keyboard/TopRow/E_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 11.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 51.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "E"
@@ -161,12 +175,12 @@ letter = "E"
 [node name="R_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/TopRow"]
 margin_left = 133.0
 margin_right = 173.0
-margin_bottom = 63.0
+margin_bottom = 56.0
 
 [node name="R" parent="MAIN UI/Left/KeyboardMargins/Keyboard/TopRow/R_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 11.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 51.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "R"
@@ -174,12 +188,12 @@ letter = "R"
 [node name="T_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/TopRow"]
 margin_left = 177.0
 margin_right = 217.0
-margin_bottom = 63.0
+margin_bottom = 56.0
 
 [node name="T" parent="MAIN UI/Left/KeyboardMargins/Keyboard/TopRow/T_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 11.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 51.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "T"
@@ -187,12 +201,12 @@ letter = "T"
 [node name="Y_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/TopRow"]
 margin_left = 221.0
 margin_right = 261.0
-margin_bottom = 63.0
+margin_bottom = 56.0
 
 [node name="Y" parent="MAIN UI/Left/KeyboardMargins/Keyboard/TopRow/Y_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 11.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 51.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "Y"
@@ -200,12 +214,12 @@ letter = "Y"
 [node name="U_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/TopRow"]
 margin_left = 265.0
 margin_right = 305.0
-margin_bottom = 63.0
+margin_bottom = 56.0
 
 [node name="U" parent="MAIN UI/Left/KeyboardMargins/Keyboard/TopRow/U_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 11.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 51.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "U"
@@ -213,12 +227,12 @@ letter = "U"
 [node name="I_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/TopRow"]
 margin_left = 309.0
 margin_right = 349.0
-margin_bottom = 63.0
+margin_bottom = 56.0
 
 [node name="I" parent="MAIN UI/Left/KeyboardMargins/Keyboard/TopRow/I_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 11.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 51.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "I"
@@ -226,12 +240,12 @@ letter = "I"
 [node name="O_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/TopRow"]
 margin_left = 353.0
 margin_right = 393.0
-margin_bottom = 63.0
+margin_bottom = 56.0
 
 [node name="O" parent="MAIN UI/Left/KeyboardMargins/Keyboard/TopRow/O_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 11.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 51.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "O"
@@ -239,20 +253,20 @@ letter = "O"
 [node name="P_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/TopRow"]
 margin_left = 397.0
 margin_right = 437.0
-margin_bottom = 63.0
+margin_bottom = 56.0
 
 [node name="P" parent="MAIN UI/Left/KeyboardMargins/Keyboard/TopRow/P_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 11.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 51.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "P"
 
 [node name="MiddleRow" type="HBoxContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard"]
-margin_top = 67.0
+margin_top = 60.0
 margin_right = 438.0
-margin_bottom = 131.0
+margin_bottom = 116.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
@@ -260,12 +274,12 @@ alignment = 1
 [node name="A_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/MiddleRow"]
 margin_left = 23.0
 margin_right = 63.0
-margin_bottom = 64.0
+margin_bottom = 56.0
 
 [node name="A" parent="MAIN UI/Left/KeyboardMargins/Keyboard/MiddleRow/A_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 12.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 52.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "A"
@@ -273,12 +287,12 @@ letter = "A"
 [node name="S_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/MiddleRow"]
 margin_left = 67.0
 margin_right = 107.0
-margin_bottom = 64.0
+margin_bottom = 56.0
 
 [node name="S" parent="MAIN UI/Left/KeyboardMargins/Keyboard/MiddleRow/S_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 12.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 52.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "S"
@@ -286,12 +300,12 @@ letter = "S"
 [node name="D_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/MiddleRow"]
 margin_left = 111.0
 margin_right = 151.0
-margin_bottom = 64.0
+margin_bottom = 56.0
 
 [node name="D" parent="MAIN UI/Left/KeyboardMargins/Keyboard/MiddleRow/D_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 12.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 52.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "D"
@@ -299,12 +313,12 @@ letter = "D"
 [node name="F_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/MiddleRow"]
 margin_left = 155.0
 margin_right = 195.0
-margin_bottom = 64.0
+margin_bottom = 56.0
 
 [node name="F" parent="MAIN UI/Left/KeyboardMargins/Keyboard/MiddleRow/F_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 12.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 52.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "F"
@@ -312,12 +326,12 @@ letter = "F"
 [node name="G_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/MiddleRow"]
 margin_left = 199.0
 margin_right = 239.0
-margin_bottom = 64.0
+margin_bottom = 56.0
 
 [node name="G" parent="MAIN UI/Left/KeyboardMargins/Keyboard/MiddleRow/G_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 12.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 52.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "G"
@@ -325,12 +339,12 @@ letter = "G"
 [node name="H_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/MiddleRow"]
 margin_left = 243.0
 margin_right = 283.0
-margin_bottom = 64.0
+margin_bottom = 56.0
 
 [node name="H" parent="MAIN UI/Left/KeyboardMargins/Keyboard/MiddleRow/H_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 12.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 52.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "H"
@@ -338,12 +352,12 @@ letter = "H"
 [node name="J_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/MiddleRow"]
 margin_left = 287.0
 margin_right = 327.0
-margin_bottom = 64.0
+margin_bottom = 56.0
 
 [node name="J" parent="MAIN UI/Left/KeyboardMargins/Keyboard/MiddleRow/J_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 12.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 52.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "J"
@@ -351,12 +365,12 @@ letter = "J"
 [node name="K_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/MiddleRow"]
 margin_left = 331.0
 margin_right = 371.0
-margin_bottom = 64.0
+margin_bottom = 56.0
 
 [node name="K" parent="MAIN UI/Left/KeyboardMargins/Keyboard/MiddleRow/K_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 12.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 52.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "K"
@@ -364,20 +378,20 @@ letter = "K"
 [node name="L_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/MiddleRow"]
 margin_left = 375.0
 margin_right = 415.0
-margin_bottom = 64.0
+margin_bottom = 56.0
 
 [node name="L" parent="MAIN UI/Left/KeyboardMargins/Keyboard/MiddleRow/L_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 12.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 52.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "L"
 
 [node name="BottomRow" type="HBoxContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard"]
-margin_top = 135.0
+margin_top = 120.0
 margin_right = 438.0
-margin_bottom = 199.0
+margin_bottom = 177.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
@@ -385,12 +399,12 @@ alignment = 1
 [node name="Z_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/BottomRow"]
 margin_left = 67.0
 margin_right = 107.0
-margin_bottom = 64.0
+margin_bottom = 57.0
 
 [node name="Z" parent="MAIN UI/Left/KeyboardMargins/Keyboard/BottomRow/Z_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 12.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 52.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "Z"
@@ -398,12 +412,12 @@ letter = "Z"
 [node name="X_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/BottomRow"]
 margin_left = 111.0
 margin_right = 151.0
-margin_bottom = 64.0
+margin_bottom = 57.0
 
 [node name="X" parent="MAIN UI/Left/KeyboardMargins/Keyboard/BottomRow/X_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 12.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 52.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "X"
@@ -411,12 +425,12 @@ letter = "X"
 [node name="C_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/BottomRow"]
 margin_left = 155.0
 margin_right = 195.0
-margin_bottom = 64.0
+margin_bottom = 57.0
 
 [node name="C" parent="MAIN UI/Left/KeyboardMargins/Keyboard/BottomRow/C_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 12.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 52.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "C"
@@ -424,12 +438,12 @@ letter = "C"
 [node name="V_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/BottomRow"]
 margin_left = 199.0
 margin_right = 239.0
-margin_bottom = 64.0
+margin_bottom = 57.0
 
 [node name="V" parent="MAIN UI/Left/KeyboardMargins/Keyboard/BottomRow/V_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 12.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 52.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "V"
@@ -437,12 +451,12 @@ letter = "V"
 [node name="B_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/BottomRow"]
 margin_left = 243.0
 margin_right = 283.0
-margin_bottom = 64.0
+margin_bottom = 57.0
 
 [node name="B" parent="MAIN UI/Left/KeyboardMargins/Keyboard/BottomRow/B_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 12.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 52.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "B"
@@ -450,12 +464,12 @@ letter = "B"
 [node name="N_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/BottomRow"]
 margin_left = 287.0
 margin_right = 327.0
-margin_bottom = 64.0
+margin_bottom = 57.0
 
 [node name="N" parent="MAIN UI/Left/KeyboardMargins/Keyboard/BottomRow/N_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 12.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 52.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "N"
@@ -463,12 +477,12 @@ letter = "N"
 [node name="M_Centering" type="CenterContainer" parent="MAIN UI/Left/KeyboardMargins/Keyboard/BottomRow"]
 margin_left = 331.0
 margin_right = 371.0
-margin_bottom = 64.0
+margin_bottom = 57.0
 
 [node name="M" parent="MAIN UI/Left/KeyboardMargins/Keyboard/BottomRow/M_Centering" groups=["key"] instance=ExtResource( 1 )]
-margin_top = 12.0
+margin_top = 8.0
 margin_right = 40.0
-margin_bottom = 52.0
+margin_bottom = 48.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 letter = "M"
@@ -482,7 +496,7 @@ size_flags_vertical = 3
 
 [node name="RightLabelMargins" type="MarginContainer" parent="MAIN UI/Right"]
 margin_right = 510.0
-margin_bottom = 50.0
+margin_bottom = 71.0
 size_flags_horizontal = 3
 custom_constants/margin_top = 24
 custom_constants/margin_bottom = 12
@@ -490,12 +504,13 @@ custom_constants/margin_bottom = 12
 [node name="RightLabel" type="Label" parent="MAIN UI/Right/RightLabelMargins"]
 margin_top = 24.0
 margin_right = 510.0
-margin_bottom = 38.0
+margin_bottom = 59.0
+custom_fonts/font = ExtResource( 7 )
 text = "POSSIBLE WORDS"
 align = 1
 
 [node name="PossibleWords" type="MarginContainer" parent="MAIN UI/Right"]
-margin_top = 54.0
+margin_top = 75.0
 margin_right = 510.0
 margin_bottom = 528.0
 size_flags_vertical = 3
@@ -503,13 +518,12 @@ custom_constants/margin_right = 36
 custom_constants/margin_top = 12
 custom_constants/margin_left = 12
 custom_constants/margin_bottom = 36
-script = ExtResource( 2 )
 
 [node name="WordList" type="HFlowContainer" parent="MAIN UI/Right/PossibleWords"]
 margin_left = 12.0
 margin_top = 12.0
 margin_right = 474.0
-margin_bottom = 438.0
+margin_bottom = 417.0
 rect_min_size = Vector2( 0, 390 )
 custom_constants/vseparation = 30
 custom_constants/hseparation = 68
@@ -521,13 +535,13 @@ margin_right = 510.0
 margin_bottom = 600.0
 custom_constants/margin_top = 12
 custom_constants/margin_bottom = 36
+script = ExtResource( 5 )
 
 [node name="PagesOrganizer" type="HBoxContainer" parent="MAIN UI/Right/Pagination"]
 margin_top = 12.0
 margin_right = 510.0
 margin_bottom = 32.0
 alignment = 1
-script = ExtResource( 5 )
 
 [node name="LastPage" type="Button" parent="MAIN UI/Right/Pagination/PagesOrganizer"]
 margin_left = 145.0

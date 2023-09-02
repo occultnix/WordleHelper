@@ -1,39 +1,46 @@
-extends HBoxContainer
+extends MarginContainer
 
-onready var wordlist = $"../../PossibleWords/WordList"
+onready var wordlist_manager = $"../PossibleWords/WordList"
 
 
 func _ready():
-	buttondisabled()
+	# We're on the first page, so disable the Last Page button
+	buttondisabledcheck()
 
 
-func buttondisabled():
+# Disable Last or Next page buttons if we can't go further
+func buttondisabledcheck():
 	# Disable the "Last Page" button if we're on the first page
-	if wordlist.counter == 0:
-		$LastPage.disabled = true
+	if wordlist_manager.counter == 0:
+		$PagesOrganizer/LastPage.disabled = true
 	else:
-		$LastPage.disabled = false
+		$PagesOrganizer/LastPage.disabled = false
 	# Disable the "Next Page" button if we're on the last page
-	if wordlist.counter == wordlist.numpages:
-		$NextPage.disabled = true
+	if wordlist_manager.counter == wordlist_manager.numpages:
+		$PagesOrganizer/NextPage.disabled = true
 	else:
-		$NextPage.disabled = false
+		$PagesOrganizer/NextPage.disabled = false
+
+
+# Update the label to display the correct page
+func updatepagelabel():
+	$PagesOrganizer/Pages.text = "Page " + str($"../PossibleWords/WordList".counter) + " / " + str($"../PossibleWords/WordList".numpages)
 
 
 # Advance a page and update variables to track that
 func _on_NextPage_pressed():
-	wordlist.emptypage()
-	wordlist.counter += 1
-	wordlist.steps -= 1
-	wordlist.updatepagelabel()
-	wordlist.fillpage()
-	buttondisabled()
+	wordlist_manager.emptypage()
+	wordlist_manager.counter += 1
+	wordlist_manager.steps -= 1
+	wordlist_manager.updatepagelabel()
+	wordlist_manager.fillpage()
+	buttondisabledcheck()
 
 # Regress a page and update variables to track that
 func _on_LastPage_pressed():
-	wordlist.emptypage()
-	wordlist.counter -= 1
-	wordlist.steps += 1
-	wordlist.updatepagelabel()
-	wordlist.fillpage()
-	buttondisabled()
+	wordlist_manager.emptypage()
+	wordlist_manager.counter -= 1
+	wordlist_manager.steps += 1
+	wordlist_manager.updatepagelabel()
+	wordlist_manager.fillpage()
+	buttondisabledcheck()

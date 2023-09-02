@@ -11,10 +11,7 @@ func _ready():
 	state = "neutral"
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
+# Toggle between states
 func advance_state():
 	match state:
 		"neutral":
@@ -29,6 +26,8 @@ func advance_state():
 			$Inactive.visible = false
 
 
+# When clicked, toggle between states and call for wordlist update
 func _on_Panel_pressed():
 	advance_state()
-	$"../../../../../../..".update_letter_activity()
+	$"../../../../..".update_letter_activity()
+	$"../../../../../../Right/PossibleWords/WordList".update_possible_words()
